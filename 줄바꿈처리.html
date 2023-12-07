@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //버튼을 누르면, 기존에 없었던 이미지요소
+        //를 동적(=실행타임)으로 생성하여, body에
+        //부착해보자 
+        let n=0; //생성 회수를 체크하기 위한 전역변수
+        function create(){            
+            let img=document.createElement("img");
+            img.src="../images/fruit.jpg";
+            img.style.width=50+"px";
+            
+            //br태그를 생성하여 body부착하자
+            if(n%3==0){
+                let p=document.createElement("p");
+                document.body.appendChild(p);
+            }
+
+            document.body.appendChild(img);
+
+            n++;
+            console.log("n=", n);
+        }
+    </script>
+</head>
+<body id="b">
+    <button onClick="create()">생성하기</button>
+
+</body>
+</html>
+
+
+
+
+

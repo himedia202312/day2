@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width:900px;
+            height:750px;
+            margin: auto;
+            background-color: yellow;
+        }
+        #lamp{
+            width:100px;
+            height:100%;
+            background-color: gray;
+            float:left;
+        }
+        #room{
+            width:800px;
+            height:100%;
+            background-image: url(../images/Lamp/room.webp);
+            float:left;
+            background-size: 800px 100%;
+        }
+        #layer{
+            width:100%;
+            height:100%;
+            background-color: black;
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+    let flag=false; //false값을 방불off로 기준..
+
+    function init(){
+       let sw=document.getElementById("sw");
+
+       sw.addEventListener("click", function(){
+            //console.log("나 눌럿어?");
+            //방의 opacity 값을 반대로 뒤집기 
+            let layer=document.getElementById("layer");
+            let op=(flag)?  0.8 : 0;
+            layer.style.opacity=op;
+            
+            //기존 스위치 이미지 반대로 적용
+            let sw=document.getElementById("sw");
+            let path=(flag)? "on.png" :"off.png";
+            
+            flag=!flag;//논리값 뒤집기
+            document.getElementById("sw").src="../images/Lamp/"+path;
+       }); 
+    }
+    </script>
+</head>
+<body onLoad="init()">
+    <div id="wrapper">
+        <div id="lamp">
+            <img id="sw" src="../images/Lamp/on.png">
+        </div>
+        <div id="room">
+            <div id="layer"></div>
+        </div>        
+    </div>
+</body>
+</html>

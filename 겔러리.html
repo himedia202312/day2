@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #wrapper{
+        width: 600px;
+        height: 500px;
+        background-color: yellow;
+        margin: auto;
+        text-align: center;
+    }
+    #pic{
+        width:600px;
+        height:400px;
+    }
+</style>
+<script>
+    let n=0;//이미지명에 사용할 전역변수
+            //전역변수로 선언한 이유? 누적을 위해    
+
+    //사진의 제목을 출력하기...
+    function setTitle(){
+        let filename=document.getElementById("filename");
+        filename.innerText="img"+n+".jpg";
+    }
+
+    //다음 사진 나오게 .. 
+    function next(){
+        n++;
+
+        //n이 6을 넘어서면 다시 0으로 원상복귀...
+        n = (n>6)? 0:n; 
+        
+        let pic=document.getElementById("pic");
+        pic.src="../images/Shrek/img"+n+".jpg";
+        setTitle();//제목 또 출력..
+
+    }
+    
+    function prev(){
+        n--;
+        
+        // 0보다 작아지면 최대값으로 설정..
+        n = (n<0)? 6:n; //
+        
+        let pic=document.getElementById("pic");
+        pic.src="../images/Shrek/img"+n+".jpg";
+        setTitle();//제목 또 출력..
+
+    }
+
+    function init(){
+        setTitle();
+        
+        //현재 문서내의 모든 버튼들에, 이벤트연결
+        let bt_prev=document.getElementById("bt_prev");
+        let bt_stop=document.getElementById("bt_stop");
+        let bt_play=document.getElementById("bt_play");
+        let bt_next=document.getElementById("bt_next");
+
+        bt_prev.addEventListener("click", function(){
+            prev();
+        });
+        bt_stop.addEventListener("click", function(){
+            
+        });
+        bt_play.addEventListener("click", function(){
+            setInterval("next()",1000);
+        });
+        bt_next.addEventListener("click", function(){
+            next();
+        });
+
+    }
+</script>
+<body onLoad="init()">
+    <div id="wrapper">
+        <div id="filename">파일명</div>
+        <img id="pic" src="../images/Shrek/img0.jpg">
+        <div>
+            <button id="bt_prev">이전</button>
+            <button id="bt_stop">중지</button>
+            <button id="bt_play">시작</button>
+            <button id="bt_next">다음</button>
+        </div>
+    </div>    
+</body>
+</html>
+
+
